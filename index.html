@@ -1,0 +1,119 @@
+<!-- 
+11111111112222222222333333333344444444445555555555666666666677777777778888888888
+ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Jogo - Buleba Wars</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        background: #eee;
+        display: block;
+        margin: 0 auto;
+      }
+		button {
+			display: block;
+		}
+    </style>
+  </head>
+  <body>
+    <canvas id="meuCanvas" width="320" height="480"></canvas>
+	<button id="runButton">Start game</button>
+    <script>
+		const canvas = document.getElementById("meuCanvas");
+		const ctx = canvas.getContext("2d");
+		const ballRadius = 10;		
+		
+		//Direção da bola
+		let x = canvas.width / 2;
+		let y = canvas.height - 30;
+		
+		//Velocidade da bola
+		let dx = 2;
+		let dy = -2;
+		
+		//Botão esquerdo do mouse
+		let leftPressed = false;
+
+		function drawCampo() {
+			ctx.beginPath();
+			ctx.arc(50, 50, 20, 0, Math.PI * 2);
+			ctx.fillStyle = "blue";
+			ctx.fill();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(200, 200, 20, 0, Math.PI * 2);
+			ctx.fillStyle = "gray";
+			ctx.fill();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(250, 350, 20, 0, Math.PI * 2);
+			ctx.fillStyle = "red";
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function drawBall() {
+		  ctx.beginPath();
+		  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+		  ctx.fillStyle = "#0095DD";
+		  ctx.fill();
+		  ctx.closePath();
+		}
+
+		function draw() {
+		  ctx.clearRect(0, 0, canvas.width, canvas.height);
+		  drawCampo();
+		  drawBall();
+			if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+			  dx = -dx;
+			}
+			if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+			  dy = -dy;
+}
+		  x += dx;
+		  y += dy;
+
+		}
+/*
+ * Adiocionei alguns eventos para as teclas, mas não finalizei e não estão
+ * funcionando, pois a ideia é colocar lógica no clique do mouse.
+ */
+		function startGame() {
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+function keyDownHandler(e) {
+  if (e.key === "Right" || e.key === "ArrowRight") {
+    rightPressed = true;
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+    leftPressed = true;
+  }
+}
+
+function keyUpHandler(e) {
+  if (e.key === "Right" || e.key === "ArrowRight") {
+    rightPressed = false;
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+    leftPressed = false;
+  }
+}
+
+		  const interval = setInterval(draw, 10);
+		}
+
+		document.getElementById("runButton").addEventListener("click", function () {
+		  startGame();
+		  this.disabled = true;
+		});
+
+
+    </script>
+  </body>
+</html>

@@ -6,5 +6,7 @@ Quero implementar uma versão minha do jogo de celular Splash Wars, gostei da di
 # Requisitos Iniciais
 Ter se possível apenas um arquivo html com javascript embutido que rode uma primeira versão mouse/teclado, visual no PC.
 
-Estudando esse site:
+Estudando esses sites:
+https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Bounce_off_the_walls
+
 https://diveintohtml5.com.br/canvas.html
